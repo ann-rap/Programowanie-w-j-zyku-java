@@ -15,18 +15,18 @@ public class Main {
             List<String> equations = readEquations();
             ExecutorService executor = Executors.newFixedThreadPool(equations.size() * 2);
             List<Future<CalculationResult>> futures = new ArrayList<>();
-            
+
             for (int i = 0; i < equations.size(); i++) {
                 EquationReaderTask readerTask = new EquationReaderTask(i, equations.get(i));
                 Future<CalculationResult> readerFuture = executor.submit(readerTask);
                 futures.add(readerFuture);
             }
-            
+
             for (Future<CalculationResult> future : futures) {
                 try {
                     CalculationResult result = future.get();
                     EquationCalculatorTask calculatorTask = new EquationCalculatorTask(result.getLineNumber(), result.getEquation());
-                    
+
                     FutureTask<Void> futureTask = new FutureTask<>(calculatorTask) {
                         @Override
                         protected void done() {
@@ -50,12 +50,12 @@ public class Main {
                 Thread.currentThread().interrupt();
             }
 
-            System.out.println("All calculations completed.");
+            System.out.println("Zakonczono wszystkie obliczenia");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     private static List<String> readEquations() throws IOException {
         List<String> equations = new ArrayList<>();
         readLock.lock();
@@ -84,7 +84,7 @@ public class Main {
 
                 Files.write(filePath, allLines);
 
-                System.out.println("Updated line " + lineNumber + " with result: " + result);
+                System.out.println("Zaktualizowano linijke " + lineNumber + " z wynikiem: " + result);
             }
         } finally {
             writeLock.unlock();
@@ -120,7 +120,7 @@ public class Main {
 
         @Override
         public CalculationResult call() {
-            System.out.println("Reader thread reading equation at line " + lineNumber + ": " + equation);
+            System.out.println("Watek reader odczytuje rownanie z linii " + lineNumber + ": " + equation);
             return new CalculationResult(lineNumber, equation);
         }
     }
@@ -138,12 +138,12 @@ public class Main {
         @Override
         public Void call() {
             try {
-                System.out.println("Calculator thread calculating equation at line " + lineNumber + ": " + equation);
+                System.out.println("Watek Calculator oblicza wynik dla linii " + lineNumber + ": " + equation);
                 ONP onp = new ONP();
                 String onpExpression = onp.przeksztalcNaOnp(equation);
                 result = onp.obliczOnp(onpExpression);
             } catch (Exception e) {
-                System.err.println("Error calculating equation at line " + lineNumber + ": " + e.getMessage());
+                System.err.println("Błąd przy obliczaniu linii " + lineNumber + ": " + e.getMessage());
                 result = "ERROR: " + e.getMessage();
             }
             return null;
@@ -151,10 +151,10 @@ public class Main {
 
         public void done() {
             try {
-                System.out.println("Writing result for line " + lineNumber + ": " + result);
+                System.out.println("Zapisywanie wyniku dla linii " + lineNumber + ": " + result);
                 updateEquation(lineNumber, result);
             } catch (IOException e) {
-                System.err.println("Error updating file: " + e.getMessage());
+                System.err.println("Błąd przy aktualizacji pliku: " + e.getMessage());
             }
         }
     }
