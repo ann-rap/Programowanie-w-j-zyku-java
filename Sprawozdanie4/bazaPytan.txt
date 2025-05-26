@@ -1,0 +1,21 @@
+1. Która litera występuje po "b" w alfabecie A. C B. D C. Ą D. A | A
+2. Która z warstw nie występuje w standardowym modelu CNN? A. Aktywacyjna B. Konwolucyjna C. Pullingowa D. W pełni połączona | C
+3. Co ma warstwy? A. skóra B. cebula C. ogry D. model CNN | A, B, C, D
+4. Jak nazywa się 4 warstwa modelu OSI? A. Fizyczna B. Prezentacji C. Łącza Danych D. Transportowa | D
+5. Jaki stan w Stanach Zjednoczonych jest największy? A. Ohio B. Alaska C. Iowa D. Oregon |B
+6. W jakim obszarze pamięci tworzony jest statyczny obiekt funkcji? A. na stosie B. w rejestrze C. na stercie D. zależy od kompilatora | D
+7. Jakie zwierzę uważa się za jednorożca morskiego? A. waleń B. narwal C. orka D. delfin | B
+8. Procesor wektorowy: A. może zawierać zwielokrotnione ALU B. wykonuje obliczenia na zmiennym przecinku C. stanowi wyposażenie superkomputerów D. żadna z powyższych | A, B, C
+9. Jaka jest jedna z tradycyjnych hiszpańskich potraw? A. tacos B. pizza C. paella D. pierogi | C
+10. Które z przedstawionych przekształceń stanowią tzw. przekształcenia RST? A. Przesunięcie B. Ścinanie C. Obrót względem śr układu współrzędnych D. Odbicie | A, C
+11. W jaki dzień tygodnia wypada piątek 13 w 2025 roku? A. środa B. piątek C. sobota D. czwartek | B
+12. Jakie pojęcie opisuje interpreter, który wykonuje polecenia wprowadzone jako ciągi znaków? A. command B. console C. shell D. terminal | C
+13. Jaki prezent chciałaby otrzymać niemowa? A. Rękawiczki B. Mikrofon C. Darmowy D. Pieprz | C
+14. Co to jest RAM? A. Rodzaj pamięci ulotnej B. Pamięć masowa C. Random Access Memory D. Procesor | A, C
+15. Kto napisał serię "Igrzyska Śmierci"? A. Zuzanna Kolka B. Suzanne Collins C. Coleen Hoover D. Susann Coling | B
+16. Jaki adres związany jest z wartswą Łącza danych w modelu OSI? A. numer portu B. adres IP C. adres MAC D. żaden z powyższych | C
+17. W której części serii "Harry Potter" umiera Cedric Diggory? A. "Harry Potter i Czara Ognia" B. "Harry Potter i Kamień Filozoficzny" C. "Harry Potter i Insygnia Śmierci" D. "Harry Potter i Zakon Feniksa" | A
+18. Jaki pierwiastek ma symbol chemiczny Na? A. Nikiel B. Neon C. Sód D. Azot | C
+19. Jak obecna młodzież (gen alpha) mówi na kogoś kto jest super cool? A. alfa B. sigma C. omega D. delta | B
+20. Które akcesorium do gry The Sims 4 dodaje jacuzzi do rozgrywki? A. Wytworne Przyjęcie B. Zabawa na podwórku C. Perfekcyjne patio D. Romantyczny ogród | C
+21. Jak nazywa się kolejna po siódmej żonie kucharza? A. usmażona B. ósma żona C. poparzona D. Wioletta | A, B
