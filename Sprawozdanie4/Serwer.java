@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,6 @@ public class Serwer implements Runnable {
     private ServerSocket server;
     private ExecutorService pool;
     private boolean acceptingClients;
-    private final Lock lockZapis = new ReentrantLock();
     private DatabaseConnection dbConnection;
 
     public Serwer(int num_questions) throws FileNotFoundException, SQLException {
@@ -56,26 +56,6 @@ public class Serwer implements Runnable {
             } catch(IOException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    private void zapiszOdpowiedzi(String dane) {
-        try (FileWriter fw = new FileWriter("bazaOdpowiedzi.txt", true);
-             BufferedWriter bw = new BufferedWriter(fw);
-             PrintWriter pw = new PrintWriter(bw)) {
-            pw.println(dane);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void zapiszWynik(String id, int wynik) {
-        try (FileWriter fw = new FileWriter("wyniki.txt", true);
-             BufferedWriter bw = new BufferedWriter(fw);
-             PrintWriter pw = new PrintWriter(bw)) {
-            pw.println(id + " : " + wynik);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -160,21 +140,22 @@ public class Serwer implements Runnable {
                 }
 
                 out.println("Wynik: " + wynik + "/" + num_questions);
-
-                lockZapis.lock();
+                
                 try {
                     dbConnection.zapiszWynik(nrAlbumu, wynik,num_questions);
-                } finally {
-                    lockZapis.unlock();
-                }
-
-            } catch (IOException| SQLException e) {
+                } catch (SQLException e) {
                 e.printStackTrace();
             } finally {
                close();
-            }
+            }} catch (SocketException e) {
+                throw new RuntimeException(e);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }}
+
         }
-    }
 
     public static void main(String[] args) {
         try{
