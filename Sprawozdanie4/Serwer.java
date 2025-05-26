@@ -124,16 +124,11 @@ public class Serwer implements Runnable {
                 out.println("Podaj swoje imie i nazwisko ");
                 nazwa = in.readLine();
 
-
-                //dodanie klienta do bazy danych
-                try (PreparedStatement ps = dbConnection.getConnection().prepareStatement("""
-            INSERT IGNORE INTO studenci(nr_albumu, imie_nazwisko) VALUES (?, ?)
-        """)) {
-                    ps.setString(1, nrAlbumu);
-                    ps.setString(2, nazwa);
-                    ps.executeUpdate();
+                try{
+                    dbConnection.dodajStudenta(nrAlbumu, nazwa);
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("Błąd bazy danych podczas zapisywania studenta");
+                    e.printStackTrace();
                 }
 
                 for (obecnePytanie = 0; obecnePytanie < num_questions; obecnePytanie++) {
