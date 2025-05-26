@@ -38,6 +38,15 @@ public class DatabaseConnection {
             wczytajPytaniaZPliku("bazaPytan.txt");
         }
     }
+    public void dodajStudenta(String nrAlbumu, String imieNazwisko) throws SQLException {
+        try (PreparedStatement ps = getConnection().prepareStatement("""
+        INSERT IGNORE INTO studenci(nr_albumu, imie_nazwisko) VALUES (?, ?)
+    """)) {
+            ps.setString(1, nrAlbumu);
+            ps.setString(2, imieNazwisko);
+            ps.executeUpdate();
+        }
+    }
 
     private void createAllTables() throws SQLException {
         String createStudenciTable = """
