@@ -140,7 +140,7 @@ public class Serwer implements Runnable {
                 }
 
                 out.println("Wynik: " + wynik + "/" + num_questions);
-                
+
                 try {
                     dbConnection.zapiszWynik(nrAlbumu, wynik,num_questions);
                 } catch (SQLException e) {
